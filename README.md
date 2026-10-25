@@ -1,6 +1,6 @@
 # Tiếng Tơ
 
-Trang giới thiệu (landing page) **tĩnh** — tiếng Tơ — đàn làm bằng tay, âm thanh làm bằng gỗ thật. Guitar acoustic, ukulele, đàn tranh làm thủ công.. Trang được dựng bằng HTML, CSS và JavaScript thuần, không cần bước biên dịch.
+Trang giới thiệu (landing page) **tĩnh** — tiếng Tơ — đàn làm bằng tay, âm thanh làm bằng gỗ thật. Guitar acoustic, ukulele, đàn tranh làm thủ công. Trang được dựng bằng HTML, CSS và JavaScript thuần, không cần bước biên dịch.
 
 > Mọi tên, số điện thoại, địa chỉ và số liệu trên trang đều là **dữ liệu mẫu**. Giá hiển thị là **giá mẫu**. Biểu mẫu (nếu có) chỉ là giao diện minh họa: không gửi dữ liệu đi đâu và không có backend.
 
