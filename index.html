@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiếng Tơ — Xưởng nhạc cụ thủ công</title>
+<meta name="description" content="Tiếng Tơ — đàn làm bằng tay, âm thanh làm bằng gỗ thật. Guitar acoustic, ukulele, đàn tranh làm thủ công.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1C1A17; --bg2:#292219; --ink:#F3EDE2; --muted:#A89A86;
+    --amber:#D9A441; --brown:#7C5A2E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",sans-serif;font-size:17px;line-height:1.7;overflow-x:hidden}
+  h1,h2,h3,.serif{font-family:"Fraunces",serif}
+  img{display:block;width:100%}
+  a{color:var(--amber)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:96px 0}
+  section.alt{background:var(--bg2)}
+  /* A7: từ khóa khổng lồ mờ phía sau tiêu đề */
+  .block-head{position:relative;margin-bottom:48px}
+  .keyword{font-family:"Fraunces",serif;font-size:96px;line-height:1;color:var(--amber);opacity:.15;letter-spacing:.02em;white-space:nowrap;overflow:hidden}
+  .block-head h2{font-size:56px;line-height:1.15;margin-top:-58px;position:relative}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+  p.lead{color:var(--muted);max-width:60%}
+  /* Dấu lỗ thoát âm: vòng tròn viền đôi + 6 dây dọc */
+  .soundhole{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;border:2px solid var(--amber);border-radius:50%;position:relative;vertical-align:middle;margin-right:12px}
+  .soundhole::before{content:"";position:absolute;inset:4px;border:1px solid var(--amber);border-radius:50%}
+  .soundhole i{position:absolute;top:5px;bottom:5px;width:1px;background:var(--amber)}
+  .soundhole i:nth-child(1){left:7px}.soundhole i:nth-child(2){left:10px}.soundhole i:nth-child(3){left:13px}
+  .soundhole i:nth-child(4){left:16px}.soundhole i:nth-child(5){left:19px}.soundhole i:nth-child(6){left:22px}
+  .soundhole.sm{width:16px;height:16px;margin-right:0}
+  .soundhole.sm::before{inset:2px}
+  .soundhole.sm i{display:none}
+  /* Vạch chia khuông nhạc: 5 đường ngang + nốt ♩ */
+  .staff{position:relative;height:34px;margin:0 0 8px}
+  .staff .line{position:absolute;left:0;right:0;height:1px;background:var(--amber)}
+  .staff .line:nth-child(1){top:4px}.staff .line:nth-child(2){top:10px}.staff .line:nth-child(3){top:16px}
+  .staff .line:nth-child(4){top:22px}.staff .line:nth-child(5){top:28px}
+  .staff .note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:0 10px;font-size:20px;color:var(--amber)}
+  section.alt .staff .note{background:var(--bg2)}
+  /* Hero toàn màn hình */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0;overflow:hidden}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:sepia(.35) saturate(1.05)}
+  .hero::after{content:"";position:absolute;inset:0;background:rgba(20,15,10,.55)}
+  .hero .inner{position:relative;z-index:1;padding:24px}
+  .hero h1{font-size:96px;line-height:1.05}
+  .hero p{font-size:19px;color:var(--ink);margin:16px auto 32px;max-width:640px}
+  .btn{display:inline-block;padding:14px 28px;border-radius:999px;font-size:16px;font-weight:700;text-decoration:none;border:2px solid var(--amber)}
+  .btn.solid{background:var(--amber);color:#1C1A17}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn + .btn{margin-left:12px}
+  /* Quy trình: xếp dọc từng bước */
+  .step{margin-bottom:64px}
+  .step:last-child{margin-bottom:0}
+  .step .num{font-family:"Fraunces",serif;font-size:56px;color:var(--amber);line-height:1}
+  .step h3{font-size:32px;margin:8px 0}
+  .step p{color:var(--muted);max-width:60%}
+  .step .photo{margin-top:20px;border:1px solid var(--brown);overflow:hidden}
+  .step .photo img{aspect-ratio:3/2;object-fit:cover;filter:sepia(.3) saturate(1.05)}
+  .step figcaption{font-size:14px;color:var(--muted);padding:10px 0 0}
+  /* Bộ sưu tập: xếp dọc từng thẻ */
+  .card{background:var(--bg2);border:1px solid var(--brown);margin-bottom:48px;overflow:hidden}
+  .card:last-child{margin-bottom:0}
+  .card .photo{position:relative}
+  .card .photo img{aspect-ratio:4/5;object-fit:cover;object-position:center;filter:sepia(.3) saturate(1.05)}
+  .card .photo .badge{position:absolute;top:16px;right:16px;background:rgba(28,26,23,.75);border-radius:50%;padding:6px}
+  .card .body{padding:28px}
+  .card h3{font-size:28px}
+  .card p{color:var(--muted)}
+  .price{color:var(--amber);font-weight:700;font-size:20px;margin-top:12px}
+  .price small{color:var(--muted);font-weight:400;font-size:14px}
+  /* Câu chuyện */
+  .story img{aspect-ratio:16/9;object-fit:cover;border:1px solid var(--brown);filter:sepia(.3) saturate(1.05)}
+  .story figcaption{font-size:14px;color:var(--muted);padding:10px 0 0}
+  .quote{border-left:3px solid var(--amber);padding-left:20px;margin:28px 0}
+  .quote p{font-style:italic}
+  .quote cite{color:var(--muted);font-size:14px;font-style:normal}
+  /* Form chỉ giao diện */
+  form{max-width:640px}
+  label{display:block;font-size:14px;font-weight:700;margin:20px 0 6px}
+  input,select,textarea{width:100%;padding:13px 14px;background:#1C1A17;border:1px solid var(--brown);border-radius:8px;color:var(--ink);font:inherit;font-size:16px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--amber)}
+  button.submit{margin-top:24px;padding:14px 32px;border-radius:999px;border:none;background:var(--amber);color:#1C1A17;font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+  #form-note{display:none;margin-top:20px;padding:14px 18px;border:1px solid var(--amber);border-radius:8px;color:var(--amber)}
+  footer{padding:64px 0;border-top:1px solid var(--brown);color:var(--muted);font-size:14px}
+  footer .slogan{font-family:"Fraunces",serif;font-size:28px;color:var(--ink)}
+  @media (max-width:767px){
+    section{padding:64px 0}
+    .hero h1{font-size:56px}
+    .hero img.bg{aspect-ratio:4/5}
+    .keyword{font-size:56px}
+    .block-head h2{font-size:36px;margin-top:-36px}
+    p.lead,.step p{max-width:100%}
+    .card .photo img{aspect-ratio:4/5}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <img class="bg" src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=1920&auto=format&fit=crop" alt="Ảnh mẫu: thợ làm đàn trong xưởng gỗ tối, ánh đèn vàng ấm">
+  <div class="inner">
+    <h1>Tiếng Tơ</h1>
+    <p>Đàn làm bằng tay, âm thanh làm bằng gỗ thật</p>
+    <a class="btn solid" href="#bo-suu-tap">Xem bộ sưu tập</a>
+    <a class="btn ghost" href="#lien-he">Đặt lịch tham quan</a>
+  </div>
+</header>
+
+<!-- 2. GIỚI THIỆU + QUY TRÌNH -->
+<section id="gioi-thieu">
+  <div class="wrap">
+    <div class="staff"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="note">♩</span></div>
+    <div class="block-head">
+      <div class="eyebrow">Xưởng thủ công</div>
+      <div class="keyword">GỖ</div>
+      <h2><span class="soundhole"><i></i><i></i><i></i><i></i><i></i><i></i></span>Giới thiệu xưởng</h2>
+    </div>
+    <p class="lead">Tiếng Tơ là một xưởng nhỏ làm nhạc cụ bằng tay — từ chọn gỗ tới căn chỉnh âm thanh, không làm dây chuyền. Mỗi cây đàn ra khỏi xưởng đều mang vân gỗ riêng và tiếng riêng, vì gỗ thật không bao giờ lặp lại y hệt.</p>
+  </div>
+</section>
+
+<section class="alt" id="quy-trinh">
+  <div class="wrap">
+    <div class="staff"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="note">♩</span></div>
+    <div class="block-head">
+      <div class="eyebrow">Làm ra một cây đàn</div>
+      <div class="keyword">DÂY</div>
+      <h2><span class="soundhole"><i></i><i></i><i></i><i></i><i></i><i></i></span>Quy trình 4 bước</h2>
+    </div>
+
+    <article class="step">
+      <div class="num">01</div>
+      <h3>Chọn gỗ</h3>
+      <p>Thợ sờ, gõ và nghe từng tấm gỗ thô trước khi chọn — gỗ nào vang, thớ nào đều mới được đưa vào làm mặt đàn và thân đàn.</p>
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=1200&auto=format&fit=crop" alt="Ảnh mẫu: dụng cụ và gỗ thô trong xưởng">
+        <figcaption>Ảnh mẫu: gỗ thô và dụng cụ trong xưởng.</figcaption>
+      </figure>
+    </article>
+
+    <article class="step">
+      <div class="num">02</div>
+      <h3>Tạo dáng</h3>
+      <p>Từ tấm gỗ phẳng, thợ cắt, uốn cong và bào dần thành dáng đàn — đường cong thân đàn quyết định cả vẻ ngoài lẫn độ vang.</p>
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=1200&auto=format&fit=crop" alt="Ảnh mẫu: thợ đang tạo dáng đàn">
+        <figcaption>Ảnh mẫu: thợ đang làm dáng đàn trong xưởng.</figcaption>
+      </figure>
+    </article>
+
+    <article class="step">
+      <div class="num">03</div>
+      <h3>Lắp dây</h3>
+      <p>Cần đàn, ngựa đàn và dây được lắp từng chiếc một, căng vừa tay — dây căng quá thì gắt, chùng quá thì tiếng đục.</p>
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1556449895-a33c9dba33dd?q=80&w=1200&auto=format&fit=crop" alt="Ảnh mẫu: cận cảnh thân đàn và dây">
+        <figcaption>Ảnh mẫu: cận cảnh thân đàn và dây.</figcaption>
+      </figure>
+    </article>
+
+    <article class="step">
+      <div class="num">04</div>
+      <h3>Căn chỉnh âm thanh</h3>
+      <p>Cuối cùng, thợ gảy thử từng nốt, chỉnh từng chút cho tiếng đều từ trầm tới cao — cây đàn chỉ xuất xưởng khi nghe đã "ra tiếng".</p>
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1200&auto=format&fit=crop" alt="Ảnh mẫu: thợ gảy thử và căn chỉnh đàn">
+        <figcaption>Ảnh mẫu: thợ gảy thử, căn chỉnh âm thanh.</figcaption>
+      </figure>
+    </article>
+  </div>
+</section>
+
+<!-- 3. BỘ SƯU TẬP -->
+<section id="bo-suu-tap">
+  <div class="wrap">
+    <div class="staff"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="note">♩</span></div>
+    <div class="block-head">
+      <div class="eyebrow">Làm tay tại xưởng</div>
+      <div class="keyword">ÂM</div>
+      <h2><span class="soundhole"><i></i><i></i><i></i><i></i><i></i><i></i></span>Bộ sưu tập</h2>
+    </div>
+
+    <article class="card">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?q=80&w=1000&auto=format&fit=crop" alt="Ảnh mẫu: guitar acoustic hoàn thiện">
+        <span class="badge"><span class="soundhole sm"></span></span>
+      </div>
+      <div class="body">
+        <h3>Guitar acoustic</h3>
+        <p>Thân gỗ tối, tiếng ấm và vang — cây đàn cho người chơi đệm hát hằng ngày lẫn thu âm tại nhà.</p>
+        <div class="price">8.500.000đ <small>(giá mẫu)</small></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1514119412350-e174d90e280e?q=80&w=1000&auto=format&fit=crop" alt="Ảnh mẫu: ukulele hoàn thiện">
+        <span class="badge"><span class="soundhole sm"></span></span>
+      </div>
+      <div class="body">
+        <h3>Ukulele</h3>
+        <p>Nhỏ, nhẹ, tiếng trong và vui — hợp người mới bắt đầu và những buổi đàn hát ngoài trời.</p>
+        <div class="price">2.800.000đ <small>(giá mẫu)</small></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=1000&auto=format&fit=crop" alt="Ảnh mẫu: nhạc cụ dây truyền thống">
+        <span class="badge"><span class="soundhole sm"></span></span>
+      </div>
+      <div class="body">
+        <h3>Đàn tranh</h3>
+        <p>Dây ngân dài, tiếng réo rắt đặc trưng — làm tay từng cây, nhận đặt làm riêng theo yêu cầu.</p>
+        <div class="price">12.000.000đ <small>(giá mẫu)</small></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 4. CÂU CHUYỆN NGƯỜI THỢ -->
+<section class="alt" id="cau-chuyen">
+  <div class="wrap">
+    <div class="staff"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="note">♩</span></div>
+    <div class="block-head">
+      <div class="eyebrow">Người đứng sau từng cây đàn</div>
+      <div class="keyword">TƠ</div>
+      <h2><span class="soundhole"><i></i><i></i><i></i><i></i><i></i><i></i></span>Câu chuyện người thợ</h2>
+    </div>
+    <figure class="story">
+      <img src="https://images.unsplash.com/photo-1471478331149-c72bb621a4a1?q=80&w=1600&auto=format&fit=crop" alt="Ảnh mẫu: xưởng làm đàn với bàn làm việc và dụng cụ">
+      <figcaption>Ảnh mẫu: bàn làm đàn và dụng cụ trong xưởng Tiếng Tơ.</figcaption>
+    </figure>
+    <p style="margin-top:28px;max-width:60%">Người thợ chính của xưởng đã làm đàn bằng tay nhiều năm — bắt đầu từ việc sửa đàn cũ cho bạn bè, rồi tự mày mò bào, uốn, lắp dây cho tới khi cây đàn đầu tiên cất được tiếng. Với người thợ, một cây đàn tốt không nằm ở độ bóng của lớp sơn, mà ở chỗ người chơi có muốn ôm đàn mỗi ngày hay không.</p>
+    <div class="quote">
+      <p>"Đàn về nhà là ôm đàn gảy suốt buổi tối, tiếng ấm hơn hẳn cây cũ của mình."</p>
+      <cite>— Cảm nhận mẫu, tên người cảm nhận: [CẦN BỔ SUNG]</cite>
+    </div>
+    <div class="quote">
+      <p>"Đặt làm riêng đúng ý mình, từ dáng đàn tới màu gỗ, chờ thì lâu mà đáng."</p>
+      <cite>— Cảm nhận mẫu, tên người cảm nhận: [CẦN BỔ SUNG]</cite>
+    </div>
+    <div class="quote">
+      <p>"Tham quan xưởng mới thấy làm một cây đàn kỳ công thế nào, nghe thử là muốn mang về."</p>
+      <cite>— Cảm nhận mẫu, tên người cảm nhận: [CẦN BỔ SUNG]</cite>
+    </div>
+  </div>
+</section>
+
+<!-- 5. FORM LIÊN HỆ — CHỈ GIAO DIỆN -->
+<section id="lien-he">
+  <div class="wrap">
+    <div class="staff"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="note">♩</span></div>
+    <div class="block-head">
+      <div class="eyebrow">Ghé xưởng xem đàn thật</div>
+      <div class="keyword">HẸN</div>
+      <h2><span class="soundhole"><i></i><i></i><i></i><i></i><i></i><i></i></span>Liên hệ / Đặt lịch tham quan</h2>
+    </div>
+    <p class="lead">Điền thông tin bên dưới — form này chỉ là giao diện mẫu, chưa gửi đi thật.</p>
+    <form id="contact-form">
+      <label for="hoten">Họ tên</label>
+      <input id="hoten" name="hoten" type="text" placeholder="Tên của bạn" required>
+      <label for="sdt">Số điện thoại</label>
+      <input id="sdt" name="sdt" type="tel" placeholder="Số điện thoại liên hệ" required>
+      <label for="loai">Loại yêu cầu</label>
+      <select id="loai" name="loai">
+        <option>Mua sẵn</option>
+        <option>Đặt làm riêng</option>
+        <option>Tham quan xưởng</option>
+      </select>
+      <label for="ngay">Ngày muốn tham quan</label>
+      <input id="ngay" name="ngay" type="date">
+      <label for="ghichu">Ghi chú</label>
+      <textarea id="ghichu" name="ghichu" rows="4" placeholder="Ví dụ: muốn xem guitar acoustic, đi cùng 2 người…"></textarea>
+      <button class="submit" type="submit">Gửi yêu cầu</button>
+      <p id="form-note">Đây là bản giao diện mẫu — yêu cầu chưa được gửi đi thật.</p>
+    </form>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('form-note').style.display = 'block';
+      });
+    </script>
+  </div>
+</section>
+
+<!-- 6. CHÂN TRANG -->
+<footer>
+  <div class="wrap">
+    <p class="slogan">Tiếng Tơ — Đàn làm bằng tay, âm thanh làm bằng gỗ thật.</p>
+    <p style="margin-top:16px">Trang demo — giá và form chỉ là mẫu. Tất cả giá trên trang là giá mẫu. Toàn bộ ảnh là ảnh mẫu.</p>
+    <p>Địa chỉ: [CẦN BỔ SUNG] · Điện thoại: [CẦN BỔ SUNG] · Giờ mở cửa: [CẦN BỔ SUNG] · Người phụ trách: [CẦN BỔ SUNG]</p>
+  </div>
+</footer>
+
+</body>
+</html>
